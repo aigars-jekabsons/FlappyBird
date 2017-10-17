@@ -64,6 +64,6 @@ app.get('/leaderboard',function(req,res){
 
 
 
-server.listen(8081,function(){ // Listens to port 8081
+server.listen(8080,function(){ // Listens to port 8081
     console.log('Listening on '+server.address().port);
 });
