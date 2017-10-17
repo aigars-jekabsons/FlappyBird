@@ -3,9 +3,32 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var util = require('util');
+var bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  app.use(bodyParser.json());
+
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 
 io.on('connection', function (socket) {
     console.log("a user connected");
+    app.post('/controlData',function(req,res){
+        var ControlValue = [req.body.data] 
+        console.log('receivedControlData',req.body)
+          io.emit("control-change", ControlValue);
+          res.send('Control '+ ControlValue + 'ValueHasBeenReceived');
+          res.end();
+     });
+    
+
     socket.on('disconnect', function(){
         console.log('user disconnected');
     });
@@ -16,6 +39,15 @@ io.on('connection', function (socket) {
         // ...emit a "message" event to every other socket
         io.emit("score", data);
     });
+
+    socket.on("score", function (data) {
+        console.log("got message: " + util.inspect(data));
+        // ...emit a "message" event to every other socket
+       
+    });
+
+
+
 });
 
 app.use('/css',express.static(__dirname + '/css'));
@@ -30,6 +62,8 @@ app.get('/leaderboard',function(req,res){
     res.sendFile(__dirname+'/leaderboard.html');
 });
 
-server.listen(8080,function(){ // Listens to port 80
+
+
+server.listen(8080,function(){ // Listens to port 8081
     console.log('Listening on '+server.address().port);
 });
