@@ -23,11 +23,11 @@ app.use('/js',express.static(__dirname + '/js'));
 app.use('/images',express.static(__dirname + '/images'));
 
 app.get('/',function(req,res){
-    res.sendFile(__dirname+'/templates/index.html');
+    res.sendFile(__dirname+'/index.html');
 });
 
 app.get('/leaderboard',function(req,res){
-    res.sendFile(__dirname+'/templates/leaderboard.html');
+    res.sendFile(__dirname+'/leaderboard.html');
 });
 
 server.listen(8080,function(){ // Listens to port 80
