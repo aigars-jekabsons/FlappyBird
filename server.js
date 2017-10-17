@@ -30,6 +30,6 @@ app.get('/leaderboard',function(req,res){
     res.sendFile(__dirname+'/templates/leaderboard.html');
 });
 
-server.listen(3000,function(){ // Listens to port 8081
+server.listen(80,function(){ // Listens to port 80
     console.log('Listening on '+server.address().port);
 });
