@@ -19,6 +19,7 @@ app.use(function (req, res, next) {
 });
 
 io.on('connection', function (socket) {
+
     console.log("a user connected");
     app.post('/controlData',function(req,res){
         var ControlValue = [req.body.data] 
@@ -27,7 +28,10 @@ io.on('connection', function (socket) {
           res.send('Control '+ ControlValue + 'ValueHasBeenReceived');
           res.end();
      });
-    
+    socket.on('receiveControls', function(data){
+        console.log('receivedControlData',data)
+        io.emit("control-change", data);
+    })
 
     socket.on('disconnect', function(){
         console.log('user disconnected');
