@@ -1,0 +1,74 @@
+body {
+    background-image: url("bg.png");
+    margin:0;
+    font-family: sans-serif;
+    background-repeat-y: no-repeat;
+    background-size: cover;
+    overflow:hidden;
+}
+
+#phaser-game {
+    border: 2px solid white;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+#page {
+    margin-left:auto;
+    margin-right:auto;
+    width:800px;
+    background: transparent;
+    padding:10px;
+    height:100vh;
+    overflow:hidden;
+}
+
+#name {
+    position: absolute;
+    width: 20rem;
+    left: calc(50% - 10rem);
+    top: 50%;
+}
+
+#score {
+    position: absolute;
+    top: 1rem;
+    left: calc(50% - 20rem);
+}
+
+#time {
+    position: absolute;
+    top: 1rem;
+    left: calc(50% + 20rem);
+}
+
+h1{
+    text-align: center;
+    font-size:250%;
+    color: #4E827A;
+    margin-top: 5%;
+
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr td:first-child,
+tr th:first-child{
+    width: 30px;
+}
+
+tr:nth-child(even){
+    background-color: #8bbbab;
+}
+tr:nth-child(odd){
+    background-color: #719b8d;
+}
